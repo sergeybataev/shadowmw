@@ -1,0 +1,8 @@
+--- authoritative
++++ shadow
+@@ -1,4 +1,4 @@
+ HTTP 200
+ Content-Type: application/octet-stream
+
+-<binary length=4 hex=00010203>
++<binary length=4 hex=000102ff>

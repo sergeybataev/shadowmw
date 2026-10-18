@@ -1,0 +1,12 @@
+--- authoritative
++++ shadow
+@@ -4,7 +4,7 @@
+ {
+   "stable": true,
+   "value": {
+-    "count": 1,
+-    "name": "old"
++    "count": 2,
++    "name": "new"
+   }
+ }

@@ -1,0 +1,10 @@
+--- authoritative
++++ shadow
+@@ -1,6 +1,6 @@
+ HTTP 200
+ Content-Type: application/json
+-X-Version: authoritative
++X-Version: shadow
+
+ {
+   "a": 1,

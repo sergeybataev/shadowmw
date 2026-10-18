@@ -1,0 +1,8 @@
+--- authoritative
++++ shadow
+@@ -2,4 +2,4 @@
+ Content-Type: text/plain
+ Capture-Truncated: true
+
+-autho
++shado

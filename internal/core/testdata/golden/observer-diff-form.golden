@@ -1,0 +1,8 @@
+--- authoritative
++++ shadow
+@@ -1,4 +1,4 @@
+ HTTP 200
+ Content-Type: application/x-www-form-urlencoded
+
+-name=old+value&stable=yes
++name=new+value&stable=yes

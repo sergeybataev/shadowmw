@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - .
+          - contrib/fx
+          - contrib/otel
+    defaults:
+      run:
+        working-directory: ${{ matrix.module }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+          cache-dependency-path: |
+            go.sum
+            contrib/fx/go.sum
+            contrib/otel/go.sum
+      - name: Module consistency
+        run: |
+          go mod tidy
+          git diff --exit-code -- go.mod go.sum
+      - name: Format
+        run: |
+          test -z "$(find . -type f -name '*.go' -print0 | xargs -0 gofmt -l)"
+      - name: Test
+        run: go test ./...
+      - name: Race
+        run: go test -race ./...
+      - name: Vet
+        run: go vet ./...
+      - name: Fuzz smoke
+        if: matrix.module == '.'
+        run: |
+          for target in \
+            FuzzOutcomeDifferenceRendering \
+            FuzzRequestBodyParsing \
+            FuzzResponseParsing \
+            FuzzJSONPointerValidation \
+            FuzzFormComparison \
+            FuzzContentDecoding \
+            FuzzInvalidComparisonInput \
+            FuzzMiddlewareMalformedAcceptQualityDoesNotBypass
+          do
+            go test -run='^$' -fuzz="^${target}$" -fuzztime=1s .
+          done

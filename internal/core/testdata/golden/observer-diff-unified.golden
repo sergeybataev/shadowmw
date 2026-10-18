@@ -1,0 +1,9 @@
+--- authoritative
++++ shadow
+@@ -2,5 +2,5 @@
+ Content-Type: text/plain
+
+ alpha
+-old
++new
+ omega

@@ -1,0 +1,16 @@
+authoritative:
+  status: 200
+  capture-truncated: false
+  captured: "{\"branch\":\"authoritative\"}"
+  decoding-state: succeeded
+  representation-kind: normalized
+  representation-present: true
+  compared: "{\"branch\":\"authoritative\"}"
+shadow:
+  status: 200
+  capture-truncated: false
+  captured: "{\"branch\":\"shadow\"}"
+  decoding-state: succeeded
+  representation-kind: normalized
+  representation-present: true
+  compared: "{\"branch\":\"shadow\"}"
